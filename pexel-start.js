@@ -72,7 +72,30 @@ const changeImg2 = function () {
       const input = bar.querySelector("#searchInput");
       input.addEventListener("input", () => {
         const query = input.value;
-        console.log(query);
+        fetch(`${linkImg}${query}`, {
+          headers: {
+            Authorization:
+              "JT5TMUSTn151x9LNkE1k3B3wtL2Adgh6syVfWdB8n5EJQAcJrDoGELQ9",
+          },
+        })
+          .then((response) => {
+            if (response.ok) {
+              return response.json();
+            } else {
+              throw new Error("Error:");
+            }
+          })
+          .then((data) => {
+            console.log(data);
+            imgs.forEach((img, i) => {
+              if (data.photos[i]) {
+                img.src = data.photos[i].src.medium;
+              }
+            });
+          })
+          .catch((error) => {
+            console.log("Error in fetch:", error);
+          });
       });
       //DEVI SCRIVERE QUI
     })
