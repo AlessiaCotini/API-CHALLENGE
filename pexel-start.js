@@ -97,6 +97,15 @@ const changeImg2 = function () {
             console.log("Error in fetch:", error);
           });
       });
+      imgs.forEach((img, i) => {
+        img.addEventListener("click", () => {
+          const photoId = data.photos[i].id;
+          window.location.href = `details.html?id=${photoId}`;
+        });
+      });
+      //7) Cliccare l'immagine o il suo nome farà cambiare pagina verso una di dettaglio dell'immagine.
+      // Qui dovrai visualizzare immagine, nome artista e linkare la sua pagina personale.
+      // Dai la possibilità all'utente di tornare indietro.
       //DEVI SCRIVERE QUI
     })
     .catch((error) => {
