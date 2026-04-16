@@ -7,6 +7,8 @@ const edit = document.querySelectorAll(
 );
 const card = document.querySelectorAll(".card-body");
 const min = document.querySelectorAll("small");
+const searchdiv = document.getElementById("search");
+
 const changeImg = function () {
   fetch(`${linkImg}tigers`, {
     headers: {
@@ -63,6 +65,14 @@ const changeImg2 = function () {
       });
       min.forEach((small, i) => {
         small.innerText = `ID: ${data.photos[i].id}`;
+      });
+      const bar = document.createElement("div");
+      bar.innerHTML = `<input id="searchInput" type="text" class="form-control" placeholder="Write about what do you what to see..." aria-label="Username" aria-describedby="basic-addon1">`;
+      searchdiv.appendChild(bar);
+      const input = bar.querySelector("#searchInput");
+      input.addEventListener("input", () => {
+        const query = input.value;
+        console.log(query);
       });
       //DEVI SCRIVERE QUI
     })
